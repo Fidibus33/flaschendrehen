@@ -45,9 +45,11 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
 })
 input.onGesture(Gesture.Shake, function () {
     Platz = 0
+    Index = 0
     Gewinner = randint(1, Spieler)
     for (let index = 0; index < Spieler - 0; index++) {
-        Platz = Platz + 1
+        Index += 1
+        Platz = Platz + Index
     }
     Platz = Platz + Gewinner - 3
     for (let index = 0; index < 9; index++) {
@@ -62,6 +64,11 @@ input.onGesture(Gesture.Shake, function () {
         Symbol = Wert
         Ausgabe()
         basic.pause(100)
+    }
+    for (let Index = 0; Index <= Gewinner; Index++) {
+        Symbol = Index + 1
+        Ausgabe()
+        basic.pause(150)
     }
     Symbol = list[Platz]
     Ausgabe()
@@ -152,6 +159,7 @@ function Ausgabe () {
 }
 let Symbol = 0
 let Gewinner = 0
+let Index = 0
 let Platz = 0
 let list: number[] = []
 let Spieler = 0

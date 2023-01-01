@@ -11,6 +11,13 @@ def on_button_a():
         basic.pause(100)
         basic.set_led_color(0xff0000)
     basic.set_led_color(0x000000)
+    basic.show_leds("""
+        . # . # .
+                # # # # #
+                # # # # #
+                . # # # .
+                . . # . .
+    """)
 input.on_button_event(Button.A, input.button_event_click(), on_button_a)
 
 def on_button_b():
@@ -27,14 +34,23 @@ def on_button_b():
         basic.set_led_color(0xff0000)
         basic.pause(100)
     basic.set_led_color(0x000000)
+    basic.show_leds("""
+        . # . # .
+                # . # . #
+                # . . . #
+                . # . # .
+                . . # . .
+    """)
 input.on_button_event(Button.B, input.button_event_click(), on_button_b)
 
 def on_gesture_shake():
-    global Platz, Gewinner, Symbol
+    global Platz, Index, Gewinner, Symbol
     Platz = 0
+    Index = 0
     Gewinner = randint(1, Spieler)
     for index3 in range(Spieler - 0):
-        Platz = Platz + 1
+        Index += 1
+        Platz = Platz + Index
     Platz = Platz + Gewinner - 3
     for index4 in range(9):
         Symbol = 9
@@ -135,6 +151,7 @@ def Ausgabe():
         """)
 Symbol = 0
 Gewinner = 0
+Index = 0
 Platz = 0
 list2: List[number] = []
 Spieler = 0
