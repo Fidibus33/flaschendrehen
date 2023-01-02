@@ -44,15 +44,26 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
         `)
 })
 input.onGesture(Gesture.Shake, function () {
+    let list2: number[] = []
     Platz = 0
     Index = 0
+    Kreis = randint(0, 3)
     Gewinner = randint(1, Spieler)
+    Index = 1
+    for (let Wert of list) {
+        if (Wert == 1) {
+            Index += 1
+        }
+        if (Index == Spieler) {
+            list2.push(Wert)
+        }
+    }
     for (let index = 0; index < Spieler - 0; index++) {
         Index += 1
         Platz = Platz + Index
     }
     Platz = Platz + Gewinner - 3
-    for (let index = 0; index < 9; index++) {
+    for (let index = 0; index < 3; index++) {
         Symbol = 9
         Ausgabe()
         basic.pause(50)
@@ -65,12 +76,30 @@ input.onGesture(Gesture.Shake, function () {
         Ausgabe()
         basic.pause(100)
     }
-    for (let Index = 0; Index <= Gewinner; Index++) {
-        Symbol = Index + 1
+    for (let index = 0; index < Kreis; index++) {
+        for (let Wert of list2) {
+            Symbol = Wert
+            Ausgabe()
+            basic.pause(150)
+        }
+    }
+    for (let Index = 0; Index <= Gewinner - -1; Index++) {
+        Symbol = Index + 0
+    }
+    for (let index = 0; index < 2; index++) {
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            # . . . #
+            . # # # .
+            `)
+        basic.pause(150)
+        Symbol = list2[Gewinner - 1]
         Ausgabe()
         basic.pause(150)
     }
-    Symbol = list[Platz]
+    Symbol = list2[Gewinner - 1]
     Ausgabe()
     music.playMelody("E E - G A A B - ", 244)
 })
@@ -159,13 +188,13 @@ function Ausgabe () {
 }
 let Symbol = 0
 let Gewinner = 0
+let Kreis = 0
 let Index = 0
 let Platz = 0
 let list: number[] = []
 let Spieler = 0
 basic.showString("Flaschendrehen")
 music.playMelody("G A B C5 G A B A ", 120)
-let Modus = 0
 Spieler = 2
 list = [
 1,
